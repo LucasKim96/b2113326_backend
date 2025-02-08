@@ -29,8 +29,8 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // middleware xử lý lỗi tập trung
   return res
-    .status(err.statusCode || 500)
-    .json({ message: err.message || "Internal Server Error" });
+    .status(error.statusCode || 500)
+    .json({ message: error.message || "Internal Server Error" });
 });
 // Export biến app để có thể sử dụng nó ở các module khác
 module.exports = app;
