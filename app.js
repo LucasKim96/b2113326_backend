@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 // import module
 const contactsRouter = require("./app/routes/contact.route");
+const ApiError = require("./app/api-error");
 // Khởi tạo một instance của ứng dụng Express và gán nó vào biến app
 const app = express();
 
@@ -18,5 +19,18 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/contacts", contactsRouter);
+
+// handle 404 response
+app.use((req, res, next) => {
+  // code chạy khi 404
+  return next(new ApiError(404, "Resource not found"));
+});
+
+app.use((err, req, res, next) => {
+  // middleware xử lý lỗi tập trung
+  return res
+    .status(err.statusCode || 500)
+    .json({ message: err.message || "Internal Server Error" });
+});
 // Export biến app để có thể sử dụng nó ở các module khác
 module.exports = app;
