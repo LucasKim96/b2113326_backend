@@ -1,3 +1,4 @@
+//xuất hàm và viết hàm xử lý
 exports.create = (req, res) => {
   res.send({ message: "create handler" });
 };

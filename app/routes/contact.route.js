@@ -3,6 +3,7 @@ const contacts = require("../controllers/contact.controller");
 
 const router = express.Router();
 
+// định nghĩa route liên quan cho phép ứng dụng xử lý các yêu cầu HTTP
 router
   .route("/")
   .get(contacts.findAll)
